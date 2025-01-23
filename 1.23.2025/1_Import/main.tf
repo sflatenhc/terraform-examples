@@ -25,23 +25,23 @@ EOF
 
   folderedfiles = flatten([
     for folder_key, folder in local.filecollection : [
-        for file_key in folder : {
-            folder_key = folder_key
-            file_key = file_key
-        }
+      for file_key in folder : {
+        folder_key = folder_key
+        file_key   = file_key
+      }
     ]
   ])
 }
 
-## terraform import local_file.local__filepath "./example_output/Folder1/File1.txt"
+
+
 resource "local_file" "local__filepath" {
   content  = local.singlelinecontent
   filename = local.filepath
 }
 
-## terraform import local_file.local__filepath ""
 resource "local_file" "local__foldered_files" {
-  for_each =  tomap({
+  for_each = tomap({
     for folder in local.folderedfiles : "${folder.folder_key}.${folder.file_key}" => folder
   })
 
