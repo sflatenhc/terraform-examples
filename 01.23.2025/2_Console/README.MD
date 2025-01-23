@@ -1,3 +1,3 @@
-terraform console
-https://developer.hashicorp.com/terraform/cli/commands/console
+# Tearraform Console Command
 
+[terraform console](https://developer.hashicorp.com/terraform/cli/commands/console)
