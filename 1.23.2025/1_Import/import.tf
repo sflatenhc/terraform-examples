@@ -13,7 +13,9 @@
 #   id = "/subscriptions/db50385e-4701-4aae-b499-4915d59caeaa/resourceGroups/terraformexamples-rg/providers/Microsoft.Storage/storageAccounts/terraformexamples002"
 # }
 
-# import {
-#   to = azurerm_storage_account.storageaccountcollection["terraformexamples003"] 
-#   id = "/subscriptions/db50385e-4701-4aae-b499-4915d59caeaa/resourceGroups/terraformexamples-rg/providers/Microsoft.Storage/storageAccounts/terraformexamples003"
-# }
+import {
+  for_each = toset(local.storageaccountcollection)
+
+  to = azurerm_storage_account.storageaccountcollection[each.value] 
+  id = "/subscriptions/db50385e-4701-4aae-b499-4915d59caeaa/resourceGroups/terraformexamples-rg/providers/Microsoft.Storage/storageAccounts/${each.value}"
+}
